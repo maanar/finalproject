@@ -1,42 +1,35 @@
-import data from "./data";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+
+import {BrowserRouter,Link, Route, Routes} from 'react-router-dom';
 import HomeScreen from "./screens/HomeScreen";
+import ProductScreen from "./screens/ProductScreen";
 
 function App() {
   return (
     <BrowserRouter>
-  <div>
+  <div class = "grid-container">
+  
       <header >
-        <a href="/">final project</a>
+      <div>
+        <a href="/#/signin">Sign-in</a>
+        <a href="/#/cart">Cart</a>
+    </div>
+    <div class="brand">
+        <Link  to="/">FRAICHE</Link >
+        </div>
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<HomeScreen />}/>
-
+        <Route path="/Product/:slug" element={< ProductScreen />} />
+          <Route path="/" element={< HomeScreen />} />
         </Routes>
-      <h1> featured products</h1>
-      
-    <div className= "products">
-        
-        {data.products.map(product => (
-        <div className="product" key ={product.slug}>
-          <a href ={`/product/${product.slug}`}>
-          <img src ={product.image} alt={product.name}/>
-          </a>
-          <div className="product-info">
-          <a href ={`/product/${product.slug}`}>
-          <p> {product.name} </p>
-          </a>
-          <p> <strong>{product.price} </strong></p>
-          <button> Add to cart</button>
-          </div>
-        </div>))
-      }
-      
-    </div>
+    
       </main>
+      <footer> 
+       all rights reserved @2022
+      </footer>
   </div>
   </BrowserRouter>
+  
   );
 }
 
